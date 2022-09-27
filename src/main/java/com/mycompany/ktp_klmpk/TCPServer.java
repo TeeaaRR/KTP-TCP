@@ -21,7 +21,7 @@ public class TCPServer {
                 try {
                     Socket clientSocket = listenSocket.accept();
                     Connection c = new Connection(clientSocket);
-//                    c.run();
+                    c.start();
                 } catch(SocketTimeoutException e){}
             }
             listenSocket.close();
@@ -39,13 +39,13 @@ class Connection extends Thread {
             clientSocket = aClientSocket;
             in = new DataInputStream( clientSocket.getInputStream());
             out =new DataOutputStream( clientSocket.getOutputStream());
-            this.start();
         } catch(IOException e) {System.out.println("Connection:"+e.getMessage());}
     }
     public void run(){
         try { // an echo server
             String data = in.readUTF(); 
             out.writeUTF(data);
+            System.out.println(data);
         } catch(EOFException e) {System.out.println("EOF:"+e.getMessage());
         } catch(IOException e) {System.out.println("IO:"+e.getMessage());
         } finally { try {clientSocket.close();} catch (IOException e){/*close failed*/}}
