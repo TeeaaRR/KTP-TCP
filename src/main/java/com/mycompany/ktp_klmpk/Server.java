@@ -30,6 +30,7 @@ public class Server extends javax.swing.JFrame {
         Start = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Stop = new javax.swing.JButton();
+        status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +56,8 @@ public class Server extends javax.swing.JFrame {
             }
         });
 
+        status.setText("Status : ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,14 +65,18 @@ public class Server extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Stop)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(Start, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Port, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(Port, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(Stop))
                 .addContainerGap(167, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +89,9 @@ public class Server extends javax.swing.JFrame {
                 .addComponent(Start)
                 .addGap(18, 18, 18)
                 .addComponent(Stop)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(status)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,10 +112,15 @@ public class Server extends javax.swing.JFrame {
         };
         
         t.start();
+        
+        status.setText("Status : Running");
+
     }//GEN-LAST:event_StartActionPerformed
 
     private void StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopActionPerformed
-        TCPServer.running = false;        
+        TCPServer.running = false; 
+        
+        status.setText("Status : Stopped");
     }//GEN-LAST:event_StopActionPerformed
 
     /**
@@ -149,5 +163,6 @@ public class Server extends javax.swing.JFrame {
     private javax.swing.JButton Start;
     private javax.swing.JButton Stop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }
