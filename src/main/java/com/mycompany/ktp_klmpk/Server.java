@@ -95,12 +95,18 @@ public class Server extends javax.swing.JFrame {
     private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
 //        System.out.println(Port.getText());
         int serverPort = Integer.parseInt(Port.getText());
-        TCPServer.running = true;
-        TCPServer.startServer(serverPort);
+        Thread t = new Thread() {       
+            public void run() {
+                TCPServer.running = true;
+                TCPServer.startServer(serverPort);
+            }
+        };
+        
+        t.start();
     }//GEN-LAST:event_StartActionPerformed
 
     private void StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopActionPerformed
-        TCPServer.running = false;
+        TCPServer.running = false;        
     }//GEN-LAST:event_StopActionPerformed
 
     /**
