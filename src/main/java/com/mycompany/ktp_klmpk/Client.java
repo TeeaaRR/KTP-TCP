@@ -141,9 +141,8 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_HostActionPerformed
 
     private void TombolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolActionPerformed
-        messages += "Mengirim pesan: " + Pesan.getText() + "\n";
         String fromServer = TCPClient.sendMessage(Host.getText(), Integer.parseInt(Port.getText()), Pesan.getText());
-        messages += "Pesan server: " + fromServer + "\n";
+        messages = fromServer;
         PesanBox.setText(messages);
     }//GEN-LAST:event_TombolActionPerformed
 

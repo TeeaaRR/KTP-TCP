@@ -11,6 +11,7 @@ import java.io.*;
  * @author ElulZ
  */
 public class TCPServer {
+    public static String messages = "";
     public static boolean running = true;
     public static void startServer (int serverPort){
         try{
@@ -44,8 +45,8 @@ class Connection extends Thread {
     public void run(){
         try { // an echo server
             String data = in.readUTF(); 
-            out.writeUTF(data);
-            System.out.println(data);
+            TCPServer.messages += "Pesan: " + data + "\n";
+            out.writeUTF(TCPServer.messages);
         } catch(EOFException e) {System.out.println("EOF:"+e.getMessage());
         } catch(IOException e) {System.out.println("IO:"+e.getMessage());
         } finally { try {clientSocket.close();} catch (IOException e){/*close failed*/}}
