@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ktp_klmpk;
+package com.undip.model;
 import java.net.*;
 import java.io.*;
-        
+
 /**
  *
- * @author MAS GAMING
+ * @author ElulZ
  */
-
-public class TCPClient {
-    public static String sendMessage (String host, int serverPort, String message) {
+public class ModelTCPClient {
+    public String sendMessage (String host, int serverPort, String message) {
         // arguments supply message and hostname of destination
         Socket s = null;
         String data = "";
@@ -22,7 +21,6 @@ public class TCPClient {
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
             out.writeUTF(message);
             data = in.readUTF(); 
-            System.out.println("Received: "+ data);  
         }catch (UnknownHostException e){
             System.out.println("Sock:"+e.getMessage()); 
         } catch (EOFException e){
@@ -38,4 +36,3 @@ public class TCPClient {
         return data;
     } 
 }
-
